@@ -11,5 +11,4 @@ def make_df() -> pd.DataFrame:
         'col_Timestamp': [pd.Timestamp(str(20210213 + i)) for i in range(5)],
         'col_date': [datetime.date(2021, 2, 13 + i) for i in range(5)]
     }).convert_dtypes().astype({'col_float64': 'float'})
-    print(df.to_markdown())
     return df
