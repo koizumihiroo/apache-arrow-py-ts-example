@@ -10,7 +10,8 @@ This is just an experimental example to show Apache Arrow data's transfer from P
 ## Run example
 
 ```sh
-git clone this url
+git clone git@github.com:koizumihiroo/apache-arrow-py-ts-example.git
+cd apache-arrow-py-ts-example
 docker-compose build
 docker-compose run --rm app # shows markdown table input and output
 ```
