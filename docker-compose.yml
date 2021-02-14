@@ -4,5 +4,6 @@ services:
   app:
     build: 
       context: .
-    volumes:
-      - ./src:/work
+    # volumes:
+    #   - ./src:/work
+    command: sh run.sh
