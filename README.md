@@ -1,13 +1,13 @@
 # What is this repository?
 
-This is just an experimental example to show Apache Arrow data's transformation from Python to Typescript.
+This is just an experimental example to show Apache Arrow data's transfer from Python to Typescript.
 
-## N.B.
+## Summary
 
 - For Python, both `pa.ipc.new_file()` (by using `RecordBatchFileWriter`) and `pa.feather.write_feather()` create a valid output data, but `write_feather()` **MUST** set `compression='uncompressed'` becausse typescript cannot handle compressed feather format.
 - For typescript, current version of `Table.toString()` does not show all values, just shows `[object Object]`
 
-## execution
+## Run example
 
 ```sh
 git clone this url
