@@ -1,10 +1,14 @@
 import { readFileSync } from 'fs';
 import { Table } from 'apache-arrow';
 
-const arrow = readFileSync('simple.arrow');
-const table = Table.from([arrow]);
+function main() {
+  const arrow = readFileSync('simple.arrow');
+  const table = Table.from([arrow]);
 
-console.log(table.data.childData);
+  console.log(table.data.childData);
+};
+
+main();
 
 /*
  foo,  bar,  baz
