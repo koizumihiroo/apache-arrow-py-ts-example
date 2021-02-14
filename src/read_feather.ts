@@ -1,24 +1,32 @@
 import { readFileSync } from 'fs';
-import { Table,Field } from 'apache-arrow';
-import { strideForType } from 'apache-arrow/type';
+import { Table, Field } from 'apache-arrow';
+import { RowLike, strideForType } from 'apache-arrow/type';
 import { stringify } from 'querystring';
 
 function showTableMarkdown(t: Table): string {
-  //const header = `${t.schema.fields.join(' | ')}\n`
-  // const header = t.schema.fields.map(x => x.toString().split(': '))
-  // const header2 = header.map(x => x[0]).join(' | ') + '\n' + header.map(x => x[1]).join(' | ')
+  // https://loaders.gl/arrowjs/docs/developer-guide/tables
   const fields = t.schema.fields
-  // const header = fields.map(x => x.toString().split(': '))
-  // const header2 = header.map(x => x['0']).join(' | ') + '\n' + header.map(x => x['1']).join(' | ')
-  function getFieldValues<T>(fields: Field[], name: string,  type: T): T[] {
-    return fields.map(x => (x[name] as T))
-  }
-  console.log(`${getFieldValues(fields, 'name', String)}`)
-  const header2 = fields.map(x => `${x['name']} ${x['type']} nullable: ${x['nullable']}`)
 
-
+  const colName = fields.map(x => x.name).join(' | ')
+  const type_ = fields.map(x => `${x.type}`).join(' | ')
+  const nullable_ = fields.map(x => x.nullable === true ? 'nullable' : '').join(' | ')
   const spliter = fields.map(() => ' --- ').join('|')
-  return `${header2}\n${spliter}\n`
+
+  let values = '';
+  const rowLength = table2.length;
+  const colLength = table2.numCols;
+  console.log(table2.data.childData);
+  //console.log(table2.data);
+  for (let i = 0; i < rowLength; i++) {
+    let row = table2.get(i) as RowLike<any>;
+    //values += Object.entries(row).map(x => x[0] + ' | ')
+    console.log(row.toString())
+    //console.log(row[i])
+  }
+  const array = table2.getColumn('col_Int64').toArray()
+  console.log(array)
+  const out = [colName, type_, nullable_, spliter, values].join('\n')
+  return out
 }
 
 
@@ -27,10 +35,6 @@ const arrow1 = readFileSync('df.feather');
 // console.log(table1.schema.toString());
 
 const arrow2 = readFileSync('df.arrow');
-const table2 = Table.from(arrow2);
-console.log(table2.getColumnAt(0).get(2) );
-for (let i = 0; i < table2.length; i++) {
-  console.log(table2.get(i).toString())
-}
+const table2 = Table.from([arrow2]);
 
 console.log(showTableMarkdown(table2))
