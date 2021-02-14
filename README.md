@@ -9,6 +9,25 @@ This is just an experimental example to show Apache Arrow data's transfer from P
 
 ## Run example
 
+### Environment
+
+```sh
+python -V
+Python 3.9.1
+# pip install pandas==1.2.2 pyarrow==3.0.0 tabulate==0.8.7
+node -v
+v15.8.0
+tsc -v
+Version 4.1.5
+cat package.json 
+{
+  "devDependencies": {
+    "@types/node": "^14.14.27",
+    "apache-arrow": "^3.0.0"
+  }
+}
+```
+
 ```sh
 git clone git@github.com:koizumihiroo/apache-arrow-py-ts-example.git
 cd apache-arrow-py-ts-example
@@ -17,6 +36,16 @@ docker-compose run --rm app # shows markdown table input and output
 ```
 
 ### input
+
+```txt
+# df.dtypes
+col_Int64                 Int64
+col_Float64             Float64
+col_float64             float64
+col_str                  string
+col_Timestamp    datetime64[ns]
+col_date                 object
+```
 
 |    | col_Int64   | col_Float64   |   col_float64 | col_str   | col_Timestamp       | col_date   |
 |---:|:------------|:--------------|--------------:|:----------|:--------------------|:-----------|
@@ -28,6 +57,8 @@ docker-compose run --rm app # shows markdown table input and output
 
 
 ### output
+
+Typescript
 
 |col_Int64<br>Int64<br>nullable | col_Float64<br>Float64<br>nullable | col_float64<br>Float64<br>nullable | col_str<br>Utf8<br>nullable | col_Timestamp<br>Timestamp<NANOSECOND><br>nullable | col_date<br>Date32<DAY><br>nullable|
 | --- | --- | --- | --- | --- | --- |
