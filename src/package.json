@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@types/node": "^14.14.27",
+    "apache-arrow": "^3.0.0"
+  }
+}
